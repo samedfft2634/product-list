@@ -2,6 +2,7 @@ import {useState} from 'react'
 import Header from "./components/Header/Header";
 import ProductCard from "./components/ProductCard/ProductCard";
 import { products,categories} from "./helper/data"
+import "./App.scss"
 
 function App() {
    const [category, setCategory] = useState("ALL")
