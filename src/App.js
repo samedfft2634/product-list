@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import Header from "./components/Header/Header";
+import ProductCard from "./components/ProductCard/ProductCard";
+import { products,categories} from "./helper/data"
 
 function App() {
+   const [category, setCategory] = useState("ALL")
+   let getProduct = []
+  const handleClick = (e)=>{
+    setCategory(e.target.textContent)  
+    console.log(category);
+  }
+  if(category === "ALL"){
+    getProduct = products
+  } else {
+    getProduct = products.filter( element=> element.category === category.toLowerCase())
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header event={handleClick} data={categories}/>
+      <ProductCard data={getProduct}/>
     </div>
   );
 }
